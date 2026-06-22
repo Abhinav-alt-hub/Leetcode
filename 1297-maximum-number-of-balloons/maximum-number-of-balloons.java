@@ -1,16 +1,18 @@
 class Solution {
-    public int maxNumberOfBalloons(String s) {
-        int[] f = new int[5];
-        String t = "balon";
+    public int maxNumberOfBalloons(String text) {
+        int b_freq = 0;
+        int a_freq = 0;
+        int l_freq = 0;
+        int o_freq = 0;
+        int n_freq = 0;
 
-        for (int i = 0; i < s.length(); i++)
-            for (int j = 0; j < 5; j++)
-                if (s.charAt(i) == t.charAt(j))
-                    f[j]++;
-
-        f[2] >>= 1;
-        f[3] >>= 1;
-
-        return Arrays.stream(f).min().getAsInt();
+        for(char ch: text.toCharArray()) {
+            if(ch == 'b') b_freq++;
+            else if(ch == 'a') a_freq++;
+            else if(ch == 'l') l_freq++;
+            else if(ch == 'o') o_freq++;
+            else if(ch == 'n') n_freq++;
+        }
+        return Math.min(Math.min(b_freq, a_freq), Math.min(n_freq, Math.min(l_freq/2, o_freq/2)));
     }
 }
